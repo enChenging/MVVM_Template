@@ -8,17 +8,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.IntDef;
+
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.release.mvvm.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import androidx.annotation.IntDef;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * @author Mr.release
@@ -36,13 +33,9 @@ public class EmptyLayout extends FrameLayout {
     private int mEmptyStatus = STATUS_LOADING;
     private int mBgColor;
 
-    @BindView(R.id.tv_net_error)
     TextView mTvEmptyMessage;
-    @BindView(R.id.rl_empty_container)
     View mRlEmptyContainer;
-    @BindView(R.id.empty_loading)
     SpinKitView mEmptyLoading;
-    @BindView(R.id.empty_layout)
     FrameLayout mEmptyLayout;
 
     public EmptyLayout(Context context) {
@@ -66,9 +59,20 @@ public class EmptyLayout extends FrameLayout {
             a.recycle();
         }
         View.inflate(mContext, R.layout.layout_empty_loading, this);
-        ButterKnife.bind(this);
+
+        mTvEmptyMessage = findViewById(R.id.tv_net_error);
+        mRlEmptyContainer = findViewById(R.id.rl_empty_container);
+        mEmptyLoading = findViewById(R.id.empty_loading);
+        mEmptyLayout = findViewById(R.id.empty_layout);
+
         mEmptyLayout.setBackgroundColor(mBgColor);
         _switchEmptyView();
+
+        mTvEmptyMessage.setOnClickListener(v -> {
+            if (mOnRetryListener != null) {
+                mOnRetryListener.onRetry();
+            }
+        });
     }
 
     /**
@@ -91,7 +95,8 @@ public class EmptyLayout extends FrameLayout {
 
     /**
      * 获取状态
-     * @return  状态
+     *
+     * @return 状态
      */
     public int getEmptyStatus() {
         return mEmptyStatus;
@@ -161,13 +166,6 @@ public class EmptyLayout extends FrameLayout {
         this.mOnRetryListener = retryListener;
     }
 
-    @OnClick(R.id.tv_net_error)
-    public void onClick() {
-        if (mOnRetryListener != null) {
-            mOnRetryListener.onRetry();
-        }
-    }
-
     /**
      * 点击重试监听器
      */
@@ -178,5 +176,6 @@ public class EmptyLayout extends FrameLayout {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({STATUS_LOADING, STATUS_NO_NET, STATUS_NO_DATA})
-    public @interface EmptyStatus{}
+    public @interface EmptyStatus {
+    }
 }

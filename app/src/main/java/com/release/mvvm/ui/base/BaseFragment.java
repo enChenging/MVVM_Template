@@ -36,9 +36,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
@@ -55,14 +52,9 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     protected T binding;
     protected V viewModel;
     private int viewModelId;
-    private Unbinder mUnbinder;
     public MainActivity mActivity;
 
-    @Nullable
-    @BindView(R.id.empty_layout)
     EmptyLayout mEmptyLayout;
-    @Nullable
-    @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefresh;
 
     private boolean mIsMulti = false;
@@ -113,7 +105,9 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(inflater, container, savedInstanceState), container, false);
         View rootView = binding.getRoot();
-        mUnbinder = ButterKnife.bind(this, rootView);
+
+        mEmptyLayout = rootView.findViewById(R.id.empty_layout);
+        mSwipeRefresh = rootView.findViewById(R.id.swipe_refresh);
         return rootView;
     }
 
@@ -152,14 +146,6 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
         if (binding != null)
             binding.unbind();
-
-        try {
-            if (mUnbinder != null)
-                mUnbinder.unbind();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
     }
 
     private void initViewDataBinding() {
