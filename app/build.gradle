@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'android'
+            keyPassword 'android'
+            storeFile file('mr_release.jks')
+            storePassword 'android'
+        }
+        release {
+            keyAlias 'android'
+            keyPassword 'android'
+            storeFile file('mr_release.jks')
+            storePassword 'android'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+    dataBinding{
+        enabled true
+    }
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+//            targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+//            generateTests false //设置为true以自动生成单元测试。
+//            targetGenDirTests 'src/main/java' //应存储生成的单元测试的基本目录。默认为 src / androidTest / java。
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':liveLib')
+    testImplementation 'junit:junit:4.12'
+
+//    annotationProcessor rootProject.ext.dependencies["permissions-processor"]
+    annotationProcessor rootProject.ext.dependencies["butterKnife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+}

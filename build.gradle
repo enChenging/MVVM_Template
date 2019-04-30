@@ -1,0 +1,25 @@
+apply from: "config.gradle"
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0-alpha02"
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+        maven{url 'https://jitpack.io'}
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

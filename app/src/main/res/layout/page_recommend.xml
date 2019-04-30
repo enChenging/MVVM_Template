@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.release.mvvm.ui.page.recommend_page.RecommendViewModel" />
+
+        <variable
+            name="viewModel"
+            type="RecommendViewModel" />
+
+
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.page.recommend_page.RecommendPage">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animationCache="false"
+            android:persistentDrawingCache="scrolling" />
+
+        <include layout="@layout/layout_common_empty" />
+
+    </FrameLayout>
+
+</layout>
