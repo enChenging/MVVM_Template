@@ -2,6 +2,7 @@ package com.release.mvvm.ui.splash;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import com.release.mvvm.R;
 import com.release.mvvm.BR;
@@ -33,7 +34,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
 
     @Override
     public void updateViews(boolean isRefresh) {
-
+        viewModel.btnPermissionVisibility.set(View.GONE);
     }
 
     @Override
