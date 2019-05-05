@@ -38,10 +38,12 @@ public class SplashViewModel extends BaseViewModel {
 
     public ObservableField<String> btnJump = new ObservableField<>("跳过");
     public ObservableInt btnPermissionVisibility = new ObservableInt();
+    public ObservableInt btnJumpVisibility = new ObservableInt();
     private boolean isBack;
 
     public SplashViewModel(@NonNull Application application) {
         super(application);
+        btnJumpVisibility.set(View.GONE);
     }
 
     public BindingCommand jumpClick = new BindingCommand(new BindingAction() {
@@ -71,11 +73,12 @@ public class SplashViewModel extends BaseViewModel {
 
     public void jump() {
         Boolean loginFirst = (Boolean) SPUtil.getParam(Constants.LOGIN_FIRST, true);
+        btnPermissionVisibility.set(View.GONE);
         if (loginFirst) {
             SPUtil.setParam(Constants.LOGIN_FIRST, false);
             goGuide();
         } else {
-            btnPermissionVisibility.set(View.GONE);
+            btnJumpVisibility.set(View.VISIBLE);
             countdown(6);
         }
     }
@@ -125,11 +128,13 @@ public class SplashViewModel extends BaseViewModel {
     public void noticeListener(SplashActivity context, View v,  boolean isNever) {
         switch (v.getId()) {
             case R.id.tv_cancel:
+                btnPermissionVisibility.set(View.VISIBLE);
                 break;
             case R.id.tv_ok:
-                if (isNever) {
+                if (isNever)
                     InstallUtil.startAppSettings(context);
-                }
+                else
+                    requestCameraPermissions(mActivity);
                 break;
         }
         NoticeDialog.dismissDialog();
@@ -143,7 +148,6 @@ public class SplashViewModel extends BaseViewModel {
     @SuppressLint("CheckResult")
     public void requestCameraPermissions(SplashActivity activity) {
         mActivity = activity;
-
         RxPermissions rxPermissions = new RxPermissions(activity);
         rxPermissions.requestEachCombined
                 (Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -155,7 +159,6 @@ public class SplashViewModel extends BaseViewModel {
                         showNotice(activity, activity.getResources().getString(R.string.rationale_wr), isNever);
                     } else {
                         isNever = true;
-                        btnPermissionVisibility.set(View.VISIBLE);
                         showNotice(activity, activity.getResources().getString(R.string.rationale_ask_again), isNever);
                     }
                 });

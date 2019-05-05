@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
 
         <import type="com.release.mvvm.ui.splash.SplashViewModel" />
@@ -29,6 +30,7 @@
             android:text="@{viewModel.btnJump}"
             android:textColor="@android:color/white"
             android:textSize="@dimen/default_small_text_size"
+            android:visibility="@{viewModel.btnJumpVisibility}"
             binding:onClickCommand="@{viewModel.jumpClick}" />
 
         <Button
