@@ -73,7 +73,7 @@ android {
             applicationId "com.release.mvvm"
             resValue "string", "name", "mvvm"
             manifestPlaceholders = [app_icon     : "@mipmap/ic_launcher2",
-                                    app_roundicon: "@mipmap/ic_launcher_round"]
+                                    app_roundicon: "@mipmap/ic_launcher2"]
         }
     }
 

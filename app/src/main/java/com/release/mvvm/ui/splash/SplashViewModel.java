@@ -103,6 +103,7 @@ public class SplashViewModel extends BaseViewModel {
 
                     @Override
                     protected void _onComplete() {
+                        LogUtils.i(TAG, "_onComplete: ");
                         if (!isBack)
                             goHome();
                     }
@@ -117,28 +118,10 @@ public class SplashViewModel extends BaseViewModel {
         startActivity(MainActivity.class);
     }
 
-    public void showNotice(SplashActivity context, String content, boolean isNever) {
-        NoticeDialog.show(context, content, (v -> noticeListener(context, v, isNever)));
-    }
-
     public void exit(Context context) {
         AppManager.appExit(context);
     }
 
-    public void noticeListener(SplashActivity context, View v,  boolean isNever) {
-        switch (v.getId()) {
-            case R.id.tv_cancel:
-                btnPermissionVisibility.set(View.VISIBLE);
-                break;
-            case R.id.tv_ok:
-                if (isNever)
-                    InstallUtil.startAppSettings(context);
-                else
-                    requestCameraPermissions(mActivity);
-                break;
-        }
-        NoticeDialog.dismissDialog();
-    }
 
     //-----------------------------------------------Permission--------------------------------------------
     private boolean isNever;
@@ -163,5 +146,25 @@ public class SplashViewModel extends BaseViewModel {
                     }
                 });
 
+    }
+
+    public void showNotice(SplashActivity context, String content, boolean isNever) {
+        NoticeDialog.show(context, content, (v -> noticeListener(context, v, isNever)));
+    }
+
+    public void noticeListener(SplashActivity context, View v,  boolean isNever) {
+        switch (v.getId()) {
+            case R.id.iv_close:
+            case R.id.tv_cancel:
+                btnPermissionVisibility.set(View.VISIBLE);
+                break;
+            case R.id.tv_ok:
+                if (isNever)
+                    InstallUtil.startAppSettings(context);
+                else
+                    requestCameraPermissions(mActivity);
+                break;
+        }
+        NoticeDialog.dismissDialog();
     }
 }

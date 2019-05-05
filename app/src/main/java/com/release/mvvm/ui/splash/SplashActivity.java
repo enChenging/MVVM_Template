@@ -4,8 +4,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import com.release.mvvm.R;
 import com.release.mvvm.BR;
+import com.release.mvvm.R;
 import com.release.mvvm.databinding.ActivitySplashBinding;
 import com.release.mvvm.ui.base.BaseActivity;
 import com.release.mvvm.utils.StatusBarUtil;
@@ -23,9 +23,14 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
         return R.layout.activity_splash;
     }
 
+
+    @Override
+    public int initVariableId() {
+        return BR.viewModel;
+    }
+
     @Override
     public void initView() {
-
         if (Build.VERSION.SDK_INT >= 23)
             viewModel.requestCameraPermissions(this);
         else
@@ -36,12 +41,6 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
     public void updateViews(boolean isRefresh) {
         viewModel.btnPermissionVisibility.set(View.GONE);
     }
-
-    @Override
-    public int initVariableId() {
-        return BR.viewModel;
-    }
-
 
     @Override
     protected void onStop() {
