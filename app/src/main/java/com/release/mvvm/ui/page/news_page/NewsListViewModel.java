@@ -73,14 +73,14 @@ public class NewsListViewModel extends BaseViewModel {
                 .subscribeWith(new CommonSubscriber<List<NewsMultiItem>>() {
                     @Override
                     protected void _onNext(List<NewsMultiItem> newsMultiItems) {
-                        LogUtils.d(TAG, "loadData--accept: ");
+                        LogUtils.d(TAG, "_onNext: ");
                         finishLoadData.setValue(newsMultiItems);
                         mPage++;
                     }
 
                     @Override
                     protected void _onError(String message) {
-                        LogUtils.d(TAG, "loadData--throwable: " + message);
+                        LogUtils.d(TAG, "_onError: " + message);
                         if (isRefresh) {
                             finishRefresh();
                             ToastUtils.show("刷新失败");
@@ -91,7 +91,7 @@ public class NewsListViewModel extends BaseViewModel {
 
                     @Override
                     protected void _onComplete() {
-                        LogUtils.d(TAG, "loadData--Action: ");
+                        LogUtils.d(TAG, "_onComplete: ");
                         if (isRefresh) {
                             finishRefresh();
                         } else {
@@ -111,20 +111,20 @@ public class NewsListViewModel extends BaseViewModel {
                 .subscribeWith(new CommonSubscriber<List<NewsMultiItem>>() {
                     @Override
                     protected void _onNext(List<NewsMultiItem> newsMultiItems) {
-                        LogUtils.d(TAG, "loadMoreData--accept: ");
+                        LogUtils.d(TAG, "_onNext: ");
                         finishLoadMoreData.setValue(newsMultiItems);
                         mPage++;
                     }
 
                     @Override
                     protected void _onError(String message) {
-                        LogUtils.d(TAG, "loadMoreData--throwable: " + message);
+                        LogUtils.d(TAG, "_onError: " + message);
                         finishNoData.call();
                     }
 
                     @Override
                     protected void _onComplete() {
-                        LogUtils.d(TAG, "loadMoreData--Action: ");
+                        LogUtils.d(TAG, "_onComplete: ");
                     }
                 });
     }

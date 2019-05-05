@@ -57,8 +57,6 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     EmptyLayout mEmptyLayout;
     SwipeRefreshLayout mSwipeRefresh;
 
-    private boolean mIsMulti = false;
-
     @Inject
     protected Context mContext;
     @Inject
@@ -104,38 +102,24 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(inflater, container, savedInstanceState), container, false);
-        View rootView = binding.getRoot();
-
-        mEmptyLayout = rootView.findViewById(R.id.empty_layout);
-        mSwipeRefresh = rootView.findViewById(R.id.swipe_refresh);
-        return rootView;
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mEmptyLayout = view.findViewById(R.id.empty_layout);
+        mSwipeRefresh = view.findViewById(R.id.swipe_refresh);
+
         initViewDataBinding();
         registorUIChangeLiveDataCallBack();
-
         initView(view);
         initListener();
         initSwipeRefresh();
-        if (getUserVisibleHint() && !mIsMulti) {
-            mIsMulti = true;
-            updateViews(false);
-        }
+        updateViews(false);
     }
 
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (isVisibleToUser && isVisible() && !mIsMulti) {
-            mIsMulti = true;
-            updateViews(false);
-        } else {
-            super.setUserVisibleHint(isVisibleToUser);
-        }
-    }
 
     @Override
     public void onDestroyView() {
