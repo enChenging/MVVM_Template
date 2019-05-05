@@ -14,6 +14,8 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
 
+        flavorDimensions "versionCode"
+
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath true
@@ -56,6 +58,7 @@ android {
     }
 
     lintOptions {
+        checkReleaseBuilds false
         abortOnError false
     }
 
@@ -63,6 +66,28 @@ android {
     dataBinding{
         enabled true
     }
+
+
+    productFlavors {
+        mvp {
+            applicationId "com.release.mvvm"
+            resValue "string", "name", "mvvm"
+            manifestPlaceholders = [app_icon     : "@mipmap/ic_launcher2",
+                                    app_roundicon: "@mipmap/ic_launcher_round"]
+        }
+    }
+
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "${productFlavors[0].name}_v${defaultConfig.versionName}_${buildType.name}_${releaseTime()}.apk"
+            }
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 greendao {
