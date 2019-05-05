@@ -69,7 +69,7 @@ android {
 
 
     productFlavors {
-        mvp {
+        mvvm {
             applicationId "com.release.mvvm"
             resValue "string", "name", "mvvm"
             manifestPlaceholders = [app_icon     : "@mipmap/ic_launcher2",
