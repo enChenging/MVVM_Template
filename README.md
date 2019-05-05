@@ -5,7 +5,10 @@ MVVM_Template
 
 ![image](https://github.com/enChenging/MVVM_Template/blob/master/src/mvvm.png)
 
+
 ![image](https://github.com/enChenging/MVVM_Template/blob/master/src/mvvm2.png)
+
+
 ![image](https://github.com/enChenging/MVVM_Template/blob/master/src/mvvm3.png)
 
 
