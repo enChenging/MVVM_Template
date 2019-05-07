@@ -3,13 +3,9 @@ MVVM_Template
 
 [MVVM_Template](https://github.com/enChenging/MVVM_Template)示例用于解释如何在我们的Android应用程序中使用MVVM模式。项目代码整体干净，此项目可以用来学习MVVM架构。[MVVM_Template.apk](https://download.csdn.net/download/aliencheng/11160067)
 
-![image](https://github.com/enChenging/MVVM_Template/blob/master/src/mvvm.png)
+<img src="https://github.com/enChenging/MVVM_Template/blob/master/screenshot/mvvm.png" width="500">
 
-
-![image](https://github.com/enChenging/MVVM_Template/blob/master/src/mvvm2.png)
-
-
-![image](https://github.com/enChenging/MVVM_Template/blob/master/src/mvvm3.png)
+<img src="https://github.com/enChenging/MVVM_Template/blob/master/screenshot/mvvm2.png" width="200"><img src="https://github.com/enChenging/MVVM_Template/blob/master/screenshot/mvvm3.png" width="200">
 
 
 用到的第三方库
