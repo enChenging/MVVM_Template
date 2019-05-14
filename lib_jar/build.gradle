@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["cardview"]
+    api rootProject.ext.dependencies["rxpermissions"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxlifecycle"]
+    api rootProject.ext.dependencies["rxlife-android"]
+    api rootProject.ext.dependencies["rxlife-components"]
+    api rootProject.ext.dependencies["rxbinding"]
+//    api rootProject.ext.dependencies["autodisposes"]
+//    api rootProject.ext.dependencies["autodispose-archcomponents"]
+    api(rootProject.ext.dependencies["glide"]) { exclude group: "com.android.support" }
+    api rootProject.ext.dependencies["glide-annotations"]
+    api rootProject.ext.dependencies["glide-okhttp3"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    api rootProject.ext.dependencies["FlycoTabLayout"]
+    api rootProject.ext.dependencies["okhttp3"]
+    api rootProject.ext.dependencies["okhttp3-logging"]
+    api rootProject.ext.dependencies["retrofit2"]
+    api rootProject.ext.dependencies["retrofit2-converter-gson"]
+    api rootProject.ext.dependencies["retrofit2-converter-scalars"]
+    api rootProject.ext.dependencies["retrofit2-adapter-rxjava2"]
+    api rootProject.ext.dependencies["bottom_menu-fragment"]
+    api rootProject.ext.dependencies["bottom_menu-ui"]
+    api rootProject.ext.dependencies["greendao"]
+    api rootProject.ext.dependencies["SpinKit"]
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    api rootProject.ext.dependencies["FlycoLabelView_Lib"]
+    api rootProject.ext.dependencies["TagLayout"]
+    api rootProject.ext.dependencies["DragSlopLayout"]
+    api rootProject.ext.dependencies["richtext"]
+    api rootProject.ext.dependencies["photoview"]
+    api rootProject.ext.dependencies["jiaozivideoplayer"]
+    api rootProject.ext.dependencies["dagger-android"]
+    api rootProject.ext.dependencies["dagger-android-support"]
+}
