@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:binding="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.release.login.ui.guide.GuideViewModel" />
+
+        <variable
+            name="viewModel"
+            type="GuideViewModel" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.guide.GuideActivity">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/bt_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/bg_welcome_jump"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="点击进入主页"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            binding:onClickCommand="@{viewModel.btHomeClick}"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/dot_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <View
+                android:id="@+id/dot_focus"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:background="@drawable/ic_dots_red" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

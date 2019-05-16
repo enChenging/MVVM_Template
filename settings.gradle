@@ -1,1 +1,1 @@
-include ':app', ':lib_jar', ':basecode'
+include ':app', ':lib_base', ':module_login', ':lib_res', ':lib_jar'

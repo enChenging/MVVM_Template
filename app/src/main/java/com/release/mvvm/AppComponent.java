@@ -1,5 +1,7 @@
 package com.release.mvvm;
 
+import com.release.login.dagger.LoginAppModule;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -11,7 +13,10 @@ import dagger.android.AndroidInjector;
  * @Describe
  */
 @Singleton
-@Component(modules = AppModule.class )
+@Component(modules = {
+        AppModule.class,
+        LoginAppModule.class}
+)
 interface AppComponent extends AndroidInjector<App> {
 
     @Component.Builder

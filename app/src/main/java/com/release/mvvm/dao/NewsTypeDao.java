@@ -3,7 +3,7 @@ package com.release.mvvm.dao;
 import android.content.Context;
 
 import com.alibaba.fastjson.JSONArray;
-import com.release.mvvm.utils.CommonUtil;
+import com.release.base.utils.CommonUtil;
 
 import java.util.List;
 

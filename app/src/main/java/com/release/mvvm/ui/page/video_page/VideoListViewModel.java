@@ -5,13 +5,13 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import com.release.base.base.BaseViewModel;
+import com.release.base.base.SingleLiveEvent;
+import com.release.base.utils.LogUtils;
+import com.release.base.utils.ToastUtils;
+import com.release.base.utils.baserx.CommonSubscriber;
 import com.release.mvvm.dao.VideoInfo;
 import com.release.mvvm.http.RetrofitHelper;
-import com.release.mvvm.ui.base.BaseViewModel;
-import com.release.mvvm.ui.base.SingleLiveEvent;
-import com.release.mvvm.utils.LogUtils;
-import com.release.mvvm.utils.ToastUtils;
-import com.release.mvvm.utils.baserx.CommonSubscriber;
 
 import org.reactivestreams.Subscription;
 

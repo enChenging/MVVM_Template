@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.release.base.base.BaseFragment;
+import com.release.base.utils.LogUtils;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.NewsInfoBean;
 import com.release.mvvm.databinding.FragmentNewsListBinding;
 import com.release.mvvm.ui.adapter.NewsListAdapter;
 import com.release.mvvm.ui.adapter.item.NewsMultiItem;
-import com.release.mvvm.ui.base.BaseFragment;
-import com.release.mvvm.utils.LogUtils;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.release.mvvm.ui.base.Constants.NEWS_TYPE_KEY;
+import static com.release.mvvm.utils.Constants.NEWS_TYPE_KEY;
 
 /**
  * 要闻

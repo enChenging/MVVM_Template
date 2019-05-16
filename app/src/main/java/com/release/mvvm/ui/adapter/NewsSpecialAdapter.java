@@ -6,14 +6,14 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.flyco.labelview.LabelView;
+import com.release.base.utils.DefIconFactory;
+import com.release.base.utils.ImageLoader;
+import com.release.base.utils.StringUtils;
 import com.release.mvvm.R;
 import com.release.mvvm.ui.adapter.item.SpecialItem;
 import com.release.mvvm.ui.page.news_page.NewsDetailActivity;
 import com.release.mvvm.ui.page.news_page.NewsSpecialActivity;
-import com.release.mvvm.utils.DefIconFactory;
-import com.release.mvvm.utils.ImageLoader;
 import com.release.mvvm.utils.NewsUtils;
-import com.release.mvvm.utils.StringUtils;
 
 import java.util.List;
 

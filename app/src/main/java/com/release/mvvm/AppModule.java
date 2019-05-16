@@ -2,24 +2,20 @@ package com.release.mvvm;
 
 import android.app.Application;
 
+import com.release.base.dagger.scope.ActivityScope;
+import com.release.base.utils.baserx.RxBus;
+import com.release.mvvm.dagger.main_module.MainActivityModule;
+import com.release.mvvm.dagger.news_detail_module.NewsDetailActivityModule;
+import com.release.mvvm.dagger.news_special_module.NewsSpecialActivityModule;
+import com.release.mvvm.dagger.photo_album_module.PhotoAlbumActivityModule;
+import com.release.mvvm.dagger.web_detail_module.WebDetailActivityModule;
 import com.release.mvvm.dao.DaoMaster;
 import com.release.mvvm.dao.DaoSession;
-import com.release.mvvm.injector.base.ActivityScope;
-import com.release.mvvm.injector.guide_module.GuideActivityModule;
-import com.release.mvvm.injector.main_module.MainActivityModule;
-import com.release.mvvm.injector.news_detail_module.NewsDetailActivityModule;
-import com.release.mvvm.injector.news_special_module.NewsSpecialActivityModule;
-import com.release.mvvm.injector.photo_album_module.PhotoAlbumActivityModule;
-import com.release.mvvm.injector.splash_module.SplashActivityModule;
-import com.release.mvvm.injector.web_detail_module.WebDetailActivityModule;
-import com.release.mvvm.ui.guide.GuideActivity;
 import com.release.mvvm.ui.home.MainActivity;
 import com.release.mvvm.ui.page.news_page.NewsDetailActivity;
 import com.release.mvvm.ui.page.news_page.NewsSpecialActivity;
 import com.release.mvvm.ui.page.news_page.PhotoAlbumActivity;
 import com.release.mvvm.ui.web_detail.WebDetailActivity;
-import com.release.mvvm.ui.splash.SplashActivity;
-import com.release.mvvm.utils.baserx.RxBus;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -62,13 +58,6 @@ abstract class AppModule {
     @ContributesAndroidInjector(modules = MainActivityModule.class)
     abstract MainActivity mainActivityInjector();
 
-    @ActivityScope
-    @ContributesAndroidInjector(modules = SplashActivityModule.class)
-    abstract SplashActivity splashActivityInjector();
-
-    @ActivityScope
-    @ContributesAndroidInjector(modules = GuideActivityModule.class)
-    abstract GuideActivity guideActivityInjector();
 
     @ActivityScope
     @ContributesAndroidInjector(modules = NewsDetailActivityModule.class)

@@ -6,16 +6,16 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
+import com.release.base.base.BaseViewModel;
+import com.release.base.base.SingleLiveEvent;
+import com.release.base.binding.command.BindingAction;
+import com.release.base.binding.command.BindingCommand;
+import com.release.base.utils.ListUtils;
+import com.release.base.utils.LogUtils;
+import com.release.base.utils.baserx.CommonSubscriber;
+import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.bean.NewsDetailInfoBean;
-import com.release.mvvm.binding.command.BindingAction;
-import com.release.mvvm.binding.command.BindingCommand;
 import com.release.mvvm.http.RetrofitHelper;
-import com.release.mvvm.ui.base.BaseViewModel;
-import com.release.mvvm.ui.base.SingleLiveEvent;
-import com.release.mvvm.utils.ListUtils;
-import com.release.mvvm.utils.LogUtils;
-import com.release.mvvm.utils.baserx.CommonSubscriber;
-import com.release.mvvm.utils.baserx.RxUtil;
 
 import org.reactivestreams.Subscription;
 

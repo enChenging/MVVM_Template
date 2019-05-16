@@ -15,22 +15,22 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 
+import com.release.base.base.BaseActivity;
+import com.release.base.utils.AnimateHelper;
+import com.release.base.utils.ListUtils;
+import com.release.base.widget.EmptyLayout;
+import com.release.base.widget.PullScrollView;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.NewsDetailInfoBean;
 import com.release.mvvm.databinding.FragmentNewsDetailBinding;
-import com.release.mvvm.ui.base.BaseActivity;
-import com.release.mvvm.utils.AnimateHelper;
-import com.release.mvvm.utils.ListUtils;
 import com.release.mvvm.utils.NewsUtils;
-import com.release.mvvm.widget.EmptyLayout;
-import com.release.mvvm.widget.PullScrollView;
 import com.zzhoujay.richtext.RichText;
 import com.zzhoujay.richtext.callback.OnUrlClickListener;
 
 import java.util.List;
 
-import static com.release.mvvm.ui.base.Constants.NEWS_ID_KEY;
+import static com.release.mvvm.utils.Constants.NEWS_ID_KEY;
 
 /**
  * 新闻详情
@@ -38,7 +38,7 @@ import static com.release.mvvm.ui.base.Constants.NEWS_ID_KEY;
  * @create 2019/4/15
  * @Describe
  */
-public class NewsDetailActivity extends BaseActivity<FragmentNewsDetailBinding,NewsDetailViewModel>  {
+public class NewsDetailActivity extends BaseActivity<FragmentNewsDetailBinding,NewsDetailViewModel> {
     private static final String TAG = NewsDetailActivity.class.getSimpleName();
     private int mMinScrollSlop;
     private Animator mTopBarAnimator;

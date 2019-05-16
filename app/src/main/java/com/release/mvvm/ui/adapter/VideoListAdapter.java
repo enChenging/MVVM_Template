@@ -2,10 +2,10 @@ package com.release.mvvm.ui.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.release.base.utils.DefIconFactory;
+import com.release.base.utils.ImageLoader;
 import com.release.mvvm.R;
 import com.release.mvvm.dao.VideoInfo;
-import com.release.mvvm.utils.DefIconFactory;
-import com.release.mvvm.utils.ImageLoader;
 
 import java.util.List;
 

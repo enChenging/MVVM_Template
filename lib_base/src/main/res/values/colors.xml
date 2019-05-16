@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="theme_color">#1775ef</color>
+
+    <item name="black" type="drawable">#00000000</item>
+    <item name="transparent" type="drawable">#00000000</item>
+    <item name="red" type="drawable">#a6ef0404</item>
+    <item name="white" type="drawable">#ffffffff</item>
+    <item name="yellow" type="drawable">#ffff9000</item>
+    <item name="green" type="drawable">#26ba30</item>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="font_normal">#555555</color>
+    <color name="window_background">#f5f5f5</color>
+    <color name="black_alpha_45">#71000000</color>
+
+    <!--toast-->
+    <color name="toast_white">#ffffff</color>
+    <color name="toast_stroke_gray">#9faab8</color>
+</resources>

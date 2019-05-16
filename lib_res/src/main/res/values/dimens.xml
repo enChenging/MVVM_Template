@@ -1,0 +1,16 @@
+<resources>
+    <!--bottom_tab-->
+    <dimen name="bottom_tab_padding_drawable">2dp</dimen>
+    <dimen name="bottom_tab_padding_up">4dp</dimen>
+    <dimen name="bottom_tab_font_size">14sp</dimen>
+
+    <!-- News List -->
+    <dimen name="news_icon_width">100dp</dimen>
+    <dimen name="news_icon_height">75dp</dimen>
+    <dimen name="news_ads_height">180dp</dimen>
+
+    <!-- News Detail-->
+    <dimen name="related_news_height">310dp</dimen>
+    <dimen name="news_detail_toolbar_height">90dp</dimen>
+    <dimen name="pull_critical_distance">70dp</dimen>
+</resources>

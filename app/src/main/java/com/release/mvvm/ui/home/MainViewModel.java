@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.release.mvvm.ui.base.BaseViewModel;
-import com.release.mvvm.utils.AppManager;
-import com.release.mvvm.utils.ToastUtils;
+import com.release.base.base.BaseViewModel;
+import com.release.base.utils.AppManager;
+import com.release.base.utils.ToastUtils;
 
 /**
  * @author Mr.release

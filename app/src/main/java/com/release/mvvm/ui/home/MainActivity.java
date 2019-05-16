@@ -1,7 +1,5 @@
 package com.release.mvvm.ui.home;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -15,14 +13,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+import com.release.base.base.BaseActivity;
+import com.release.base.router.RouterActivityPath;
+import com.release.base.utils.StatusBarUtil;
+import com.release.base.utils.ToastUtils;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.databinding.ActivityMainBinding;
-import com.release.mvvm.ui.base.BaseActivity;
-import com.release.mvvm.utils.StatusBarUtil;
-import com.release.mvvm.utils.ToastUtils;
 
 import cn.jzvd.Jzvd;
 
@@ -31,18 +31,13 @@ import cn.jzvd.Jzvd;
  * @create 2019/3/22
  * @Describe
  */
+@Route(path = RouterActivityPath.Main.PAGER_MAIN)
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private ImageView mHeadImg;
-
-    public static void start(Context context) {
-        Intent intent = new Intent();
-        intent.setClass(context, MainActivity.class);
-        context.startActivity(intent);
-    }
 
     @Override
     public int getLayoutId(Bundle savedInstanceState) {

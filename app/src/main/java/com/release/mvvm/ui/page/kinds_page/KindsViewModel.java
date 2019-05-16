@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import com.release.mvvm.ui.base.BaseViewModel;
+import com.release.base.base.BaseViewModel;
 
 /**
  * @author Mr.release

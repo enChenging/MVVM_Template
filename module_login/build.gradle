@@ -1,0 +1,23 @@
+apply from: "../module.build.gradle"
+
+android {
+
+    //如果是独立模块，则使用当前组件的包名
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "com.release.login"
+        }
+    }
+
+    //统一资源前缀，规范资源引用
+    resourcePrefix "login_"
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(':lib_base')
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+}

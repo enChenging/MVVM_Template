@@ -4,25 +4,29 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
 
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.android["applicationId"]
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         flavorDimensions "versionCode"
 
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath true
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//                includeCompileClasspath true
             }
         }
+    }
 
-        multiDexEnabled true
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
@@ -52,16 +56,19 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isModule.toBoolean()) {
+                manifest.srcFile 'src/main/alone/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                resources {
+                    exclude 'src/debug/*'
+                }
+            }
+        }
     }
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
-
 
     dataBinding{
         enabled true
@@ -76,7 +83,6 @@ android {
                                     app_roundicon: "@mipmap/ic_launcher2"]
         }
     }
-
 
     android.applicationVariants.all {
         variant ->
@@ -99,8 +105,15 @@ greendao {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':lib_jar')
 
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    if (isModule.toBoolean()){
+        implementation project(':lib_base')
+    }else {
+        implementation project(':module_login')
+    }
+
 }

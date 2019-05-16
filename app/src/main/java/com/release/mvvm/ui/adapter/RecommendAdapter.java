@@ -4,10 +4,10 @@ import androidx.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.release.base.utils.DefIconFactory;
+import com.release.base.utils.ImageLoader;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.RecommendPageBean;
-import com.release.mvvm.utils.DefIconFactory;
-import com.release.mvvm.utils.ImageLoader;
 
 import java.util.List;
 

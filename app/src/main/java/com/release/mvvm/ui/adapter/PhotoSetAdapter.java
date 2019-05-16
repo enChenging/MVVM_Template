@@ -12,8 +12,8 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.release.base.utils.ImageLoader;
 import com.release.mvvm.R;
-import com.release.mvvm.utils.ImageLoader;
 
 import java.util.List;
 

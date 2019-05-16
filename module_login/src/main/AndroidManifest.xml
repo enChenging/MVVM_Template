@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.release.login">
+
+    <application>
+        <activity
+            android:name="com.release.login.ui.guide.GuideActivity"
+            android:launchMode="singleTop" />
+    </application>
+</manifest>

@@ -6,18 +6,18 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.flyco.labelview.LabelView;
+import com.release.base.utils.DefIconFactory;
+import com.release.base.utils.ImageLoader;
+import com.release.base.utils.ListUtils;
+import com.release.base.utils.StringUtils;
+import com.release.base.widget.RippleView;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.NewsInfoBean;
 import com.release.mvvm.ui.adapter.item.NewsMultiItem;
 import com.release.mvvm.ui.page.news_page.NewsDetailActivity;
 import com.release.mvvm.ui.page.news_page.NewsSpecialActivity;
 import com.release.mvvm.ui.page.news_page.PhotoAlbumActivity;
-import com.release.mvvm.utils.DefIconFactory;
-import com.release.mvvm.utils.ImageLoader;
-import com.release.mvvm.utils.ListUtils;
 import com.release.mvvm.utils.NewsUtils;
-import com.release.mvvm.utils.StringUtils;
-import com.release.mvvm.widget.RippleView;
 
 import java.util.List;
 

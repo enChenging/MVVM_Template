@@ -10,12 +10,12 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.release.base.base.BaseFragment;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.RecommendPageBean;
 import com.release.mvvm.databinding.PageRecommendBinding;
 import com.release.mvvm.ui.adapter.RecommendAdapter;
-import com.release.mvvm.ui.base.BaseFragment;
 import com.release.mvvm.ui.web_detail.WebDetailActivity;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
  * @create 2019/3/22
  * @Describe
  */
-public class RecommendPage extends BaseFragment<PageRecommendBinding,RecommendViewModel> {
+public class RecommendPage extends BaseFragment<PageRecommendBinding, RecommendViewModel> {
     private static final String TAG = RecommendPage.class.getSimpleName();
 
     @Inject
@@ -61,6 +61,7 @@ public class RecommendPage extends BaseFragment<PageRecommendBinding,RecommendVi
 
                 RecommendPageBean.NewslistBean bean = (RecommendPageBean.NewslistBean) adapter.getData().get(position);
                 WebDetailActivity.start(mContext, bean.getTitle(), bean.getCtime(), bean.getDescription(), bean.getUrl());
+//                viewModel.goToWebDetail(bean);
             }
         });
 

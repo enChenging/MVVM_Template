@@ -1,3 +1,4 @@
+//confing
 apply from: "config.gradle"
 
 buildscript {

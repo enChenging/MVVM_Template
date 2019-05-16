@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.release.mvvm.ui.base.BaseViewModel;
+import com.release.base.base.BaseViewModel;
 
 import java.util.ArrayList;
 

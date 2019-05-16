@@ -13,16 +13,16 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.release.base.base.BaseActivity;
+import com.release.base.utils.LogUtils;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.databinding.ActivityEventDetailBinding;
-import com.release.mvvm.ui.base.BaseActivity;
-import com.release.mvvm.utils.LogUtils;
 
-import static com.release.mvvm.ui.base.Constants.RECOMMEND_CTIME;
-import static com.release.mvvm.ui.base.Constants.RECOMMEND_DESC;
-import static com.release.mvvm.ui.base.Constants.RECOMMEND_HTML;
-import static com.release.mvvm.ui.base.Constants.RECOMMEND_TITLE;
+import static com.release.mvvm.utils.Constants.RECOMMEND_CTIME;
+import static com.release.mvvm.utils.Constants.RECOMMEND_DESC;
+import static com.release.mvvm.utils.Constants.RECOMMEND_HTML;
+import static com.release.mvvm.utils.Constants.RECOMMEND_TITLE;
 
 /**
  * @author Mr.release
@@ -106,7 +106,7 @@ public class WebDetailActivity extends BaseActivity<ActivityEventDetailBinding, 
             @JavascriptInterface
             @Override
             public void showActivity(String clazz) {
-//                int userId = (int) SPUtil.getParam(Constants.USER_ID, 0);
+//                int userId = (int) SPUtil.getParam(BaseConstants.USER_ID, 0);
 //                if (userId == 0) {
 //                    Toast.makeText(WebDetailActivity.this, getString(R.string.please_login), Toast.LENGTH_SHORT).show();
 //                    return;

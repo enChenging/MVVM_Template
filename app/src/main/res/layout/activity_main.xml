@@ -34,7 +34,7 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/nav_bottom" />
 
-            <com.release.mvvm.widget.bottom_navigation.BottomNavigationViewEx
+            <com.release.base.widget.bottom_navigation.BottomNavigationViewEx
                 android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

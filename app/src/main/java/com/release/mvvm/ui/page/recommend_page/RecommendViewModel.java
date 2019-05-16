@@ -2,14 +2,17 @@ package com.release.mvvm.ui.page.recommend_page;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.release.base.base.BaseViewModel;
+import com.release.base.base.SingleLiveEvent;
+import com.release.base.utils.baserx.CommonSubscriber;
 import com.release.mvvm.bean.RecommendPageBean;
 import com.release.mvvm.http.RetrofitHelper;
-import com.release.mvvm.ui.base.BaseViewModel;
-import com.release.mvvm.ui.base.SingleLiveEvent;
-import com.release.mvvm.utils.baserx.CommonSubscriber;
+import com.release.mvvm.ui.web_detail.WebDetailActivity;
+import com.release.mvvm.utils.Constants;
 
 import java.util.List;
 
@@ -50,5 +53,11 @@ public class RecommendViewModel extends BaseViewModel {
                             }
                         }));
 
+    }
+
+    public void goToWebDetail(RecommendPageBean.NewslistBean bean){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.RECOMMEND_BUNDLE,bean);
+        startActivity(WebDetailActivity.class,bundle);
     }
 }

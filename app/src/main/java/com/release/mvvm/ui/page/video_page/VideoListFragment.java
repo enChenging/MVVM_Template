@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.release.base.base.BaseFragment;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.dao.VideoInfo;
 import com.release.mvvm.databinding.FragmentVideoListBinding;
 import com.release.mvvm.ui.adapter.VideoListAdapter;
-import com.release.mvvm.ui.base.BaseFragment;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import javax.inject.Inject;
 
 import cn.jzvd.Jzvd;
 
-import static com.release.mvvm.ui.base.Constants.VIDEO_ID_KEY;
+import static com.release.mvvm.utils.Constants.VIDEO_ID_KEY;
 
 /**
  * @author Mr.release

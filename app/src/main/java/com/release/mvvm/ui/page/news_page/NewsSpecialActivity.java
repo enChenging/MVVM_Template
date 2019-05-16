@@ -22,16 +22,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dl7.tag.TagLayout;
 import com.dl7.tag.TagView;
+import com.release.base.base.BaseActivity;
+import com.release.base.utils.AnimateHelper;
+import com.release.base.utils.DefIconFactory;
+import com.release.base.utils.ImageLoader;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.SpecialInfoBean;
 import com.release.mvvm.databinding.ActivitySpecialBinding;
 import com.release.mvvm.ui.adapter.NewsSpecialAdapter;
 import com.release.mvvm.ui.adapter.item.SpecialItem;
-import com.release.mvvm.ui.base.BaseActivity;
-import com.release.mvvm.utils.AnimateHelper;
-import com.release.mvvm.utils.DefIconFactory;
-import com.release.mvvm.utils.ImageLoader;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.release.mvvm.ui.base.Constants.SPECIAL_KEY;
+import static com.release.mvvm.utils.Constants.SPECIAL_KEY;
 
 /**
  * 新闻专题

@@ -6,11 +6,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import com.release.base.base.BaseFragment;
+import com.release.base.base.ViewPagerAdapter;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.databinding.PageVideoBinding;
-import com.release.mvvm.ui.base.BaseFragment;
-import com.release.mvvm.ui.base.ViewPagerAdapter;
 
 import javax.inject.Inject;
 

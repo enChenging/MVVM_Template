@@ -25,7 +25,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.page.news_page.NewsDetailActivity">
 
-        <com.release.mvvm.widget.PullScrollView
+        <com.release.base.widget.PullScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.release.mvvm.widget.IToolBar
+                <com.release.base.widget.IToolBar
                     android:id="@+id/tool_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -51,7 +51,7 @@
                     android:id="@+id/include_foot"
                     layout="@layout/layout_pull_scrollview_foot" />
             </LinearLayout>
-        </com.release.mvvm.widget.PullScrollView>
+        </com.release.base.widget.PullScrollView>
 
         <include layout="@layout/layout_common_empty" />
 

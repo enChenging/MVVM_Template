@@ -1,5 +1,9 @@
 package com.release.mvvm.http;
 
+import com.release.base.utils.CommonUtil;
+import com.release.base.utils.LogUtils;
+import com.release.base.utils.StringUtils;
+import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.App;
 import com.release.mvvm.BuildConfig;
 import com.release.mvvm.bean.NewsDetailInfoBean;
@@ -11,11 +15,6 @@ import com.release.mvvm.dao.VideoInfo;
 import com.release.mvvm.http.api.BaseURL;
 import com.release.mvvm.http.api.NewsServiceApi;
 import com.release.mvvm.http.api.RecommendServiceApi;
-import com.release.mvvm.utils.CommonUtil;
-import com.release.mvvm.utils.LogUtils;
-import com.release.mvvm.utils.StringUtils;
-import com.release.mvvm.utils.baserx.RxUtil;
-
 import org.reactivestreams.Publisher;
 
 import java.io.File;
@@ -42,7 +41,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.release.mvvm.ui.base.Constants.INCREASE_PAGE;
+import static com.release.base.constance.BConstants.INCREASE_PAGE;
 
 /**
  * @author Mr.release
@@ -71,7 +70,7 @@ public class RetrofitHelper {
                     HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory();
                     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
                     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                    Cache cache = new Cache(new File(App.mContext.getCacheDir(), "HttpCache"), 1024 * 1024 * 10);
+                    Cache cache = new Cache(new File(App.getInstance().getCacheDir(), "HttpCache"), 1024 * 1024 * 10);
                     builder = new OkHttpClient.Builder()
                             .cache(cache)
                             .addInterceptor(new headerIntercepteor())
@@ -169,7 +168,7 @@ public class RetrofitHelper {
             // 无网络时，设置超时为1周
             int maxStale = 60 * 60 * 24 * 7;
             Request request = chain.request();
-            if (CommonUtil.isNetworkAvailable(App.mContext)) {
+            if (CommonUtil.isNetworkAvailable(App.getInstance())) {
                 //有网络时只从网络获取
                 request = request.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
             } else {
@@ -177,7 +176,7 @@ public class RetrofitHelper {
                 request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
             }
             Response response = chain.proceed(request);
-            if (CommonUtil.isNetworkAvailable(App.mContext)) {
+            if (CommonUtil.isNetworkAvailable(App.getInstance())) {
                 response = response.newBuilder()
                         .removeHeader("Pragma")
                         .header("Cache-Control", "public, max-age=" + maxAge)

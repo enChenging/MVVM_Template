@@ -5,16 +5,16 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import com.release.base.base.BaseViewModel;
+import com.release.base.base.SingleLiveEvent;
+import com.release.base.utils.LogUtils;
+import com.release.base.utils.ToastUtils;
+import com.release.base.utils.baserx.CommonSubscriber;
+import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.bean.NewsInfoBean;
 import com.release.mvvm.http.RetrofitHelper;
 import com.release.mvvm.ui.adapter.item.NewsMultiItem;
-import com.release.mvvm.ui.base.BaseViewModel;
-import com.release.mvvm.ui.base.SingleLiveEvent;
-import com.release.mvvm.utils.LogUtils;
 import com.release.mvvm.utils.NewsUtils;
-import com.release.mvvm.utils.ToastUtils;
-import com.release.mvvm.utils.baserx.CommonSubscriber;
-import com.release.mvvm.utils.baserx.RxUtil;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;

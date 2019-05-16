@@ -1,5 +1,6 @@
 package com.release.mvvm.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -43,7 +44,7 @@ public class RecommendPageBean {
         this.newslist = newslist;
     }
 
-    public static class NewslistBean {
+    public static class NewslistBean implements Serializable {
         /**
          * ctime : 2019-04-23 13:20
          * title : 微软日本公司宣布今年8月每周休三天 并发放补助

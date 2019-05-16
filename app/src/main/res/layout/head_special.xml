@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-   <com.release.mvvm.widget.IToolBar
+   <com.release.base.widget.IToolBar
        android:id="@+id/toolbar"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"/>

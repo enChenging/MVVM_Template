@@ -8,20 +8,20 @@ import android.os.Bundle;
 import androidx.lifecycle.Observer;
 import androidx.viewpager.widget.ViewPager;
 
+import com.release.base.base.BaseActivity;
+import com.release.base.utils.StatusBarUtil;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.bean.PhotoSetInfoBean;
 import com.release.mvvm.databinding.ActivityPhotoAlbumBinding;
 import com.release.mvvm.ui.adapter.PhotoSetAdapter;
-import com.release.mvvm.ui.base.BaseActivity;
-import com.release.mvvm.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.release.mvvm.ui.base.Constants.PHOTO_SET_KEY;
+import static com.release.mvvm.utils.Constants.PHOTO_SET_KEY;
 
 /**
  * 图集

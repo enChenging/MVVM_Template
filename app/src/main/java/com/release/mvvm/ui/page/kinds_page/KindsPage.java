@@ -6,10 +6,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import com.release.base.base.BaseFragment;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.databinding.PageKindsBinding;
-import com.release.mvvm.ui.base.BaseFragment;
 
 /**
  * @author Mr.release

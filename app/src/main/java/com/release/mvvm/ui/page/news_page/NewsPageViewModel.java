@@ -4,14 +4,14 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import com.release.mvvm.binding.command.BindingAction;
-import com.release.mvvm.binding.command.BindingCommand;
+import com.release.base.base.BaseViewModel;
+import com.release.base.base.SingleLiveEvent;
+import com.release.base.binding.command.BindingAction;
+import com.release.base.binding.command.BindingCommand;
+import com.release.base.utils.ToastUtils;
 import com.release.mvvm.dao.DaoSession;
 import com.release.mvvm.dao.NewsTypeInfo;
 import com.release.mvvm.dao.NewsTypeInfoDao;
-import com.release.mvvm.ui.base.BaseViewModel;
-import com.release.mvvm.ui.base.SingleLiveEvent;
-import com.release.mvvm.utils.ToastUtils;
 
 import java.util.List;
 

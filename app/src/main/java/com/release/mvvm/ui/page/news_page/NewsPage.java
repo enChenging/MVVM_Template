@@ -12,15 +12,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+import com.release.base.base.BaseFragment;
+import com.release.base.base.ViewPagerAdapter;
+import com.release.base.utils.KeyboardUtils;
+import com.release.base.utils.ToastUtils;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.dao.DaoSession;
 import com.release.mvvm.dao.NewsTypeInfo;
 import com.release.mvvm.databinding.PageNewsBinding;
-import com.release.mvvm.ui.base.BaseFragment;
-import com.release.mvvm.ui.base.ViewPagerAdapter;
-import com.release.mvvm.utils.KeyboardUtils;
-import com.release.mvvm.utils.ToastUtils;
+import com.release.mvvm.ui.home.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class NewsPage extends BaseFragment<PageNewsBinding, NewsPageViewModel> {
         viewModel.setting.observe(this, new Observer() {
             @Override
             public void onChanged(Object o) {
-                mActivity.toggle();
+                ((MainActivity)getActivity()).toggle();
             }
         });
 
