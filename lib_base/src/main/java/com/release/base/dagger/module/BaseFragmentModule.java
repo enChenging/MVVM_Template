@@ -1,4 +1,4 @@
-package com.release.mvvm.dagger;
+package com.release.base.dagger.module;
 
 
 import androidx.fragment.app.FragmentManager;

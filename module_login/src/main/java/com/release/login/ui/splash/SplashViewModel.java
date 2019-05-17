@@ -117,7 +117,10 @@ public class SplashViewModel extends BaseViewModel {
     }
 
     private void goHome() {
-        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+        ARouter.getInstance()
+                .build(RouterActivityPath.Main.PAGER_MAIN)
+                .withTransition(com.release.base.R.anim.slide_right_entry, com.release.base.R.anim.hold)
+                .navigation();
     }
 
     public void exit(Context context) {
@@ -154,7 +157,7 @@ public class SplashViewModel extends BaseViewModel {
         NoticeDialog.show(context, content, (v -> noticeListener(context, v, isNever)));
     }
 
-    public void noticeListener(SplashActivity context, View v,  boolean isNever) {
+    public void noticeListener(SplashActivity context, View v, boolean isNever) {
         int i = v.getId();
         if (i == R.id.iv_close || i == R.id.tv_cancel) {
             btnPermissionVisibility.set(View.VISIBLE);

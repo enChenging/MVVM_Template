@@ -1,6 +1,6 @@
 package com.release.mvvm.dagger.main_module.kinds_page;
 
-import com.release.mvvm.dagger.BaseFragmentModule;
+import com.release.base.dagger.module.BaseFragmentModule;
 import com.release.base.dagger.qualifiers.Fragment;
 import com.release.base.dagger.scope.FragmentScope;
 import com.release.mvvm.ui.page.kinds_page.KindsPage;

@@ -42,7 +42,10 @@ public class GuideViewModel extends BaseViewModel {
     });
 
     public void goHome() {
-        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+        ARouter.getInstance()
+                .build(RouterActivityPath.Main.PAGER_MAIN)
+                .withTransition(com.release.base.R.anim.slide_right_entry, com.release.base.R.anim.hold)
+                .navigation();
     }
 
     public void imageViews(Context context, LinearLayout mDotGroup) {

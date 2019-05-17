@@ -2,7 +2,6 @@ apply from: "../module.build.gradle"
 
 android {
 
-    //如果是独立模块，则使用当前组件的包名
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.release.login"

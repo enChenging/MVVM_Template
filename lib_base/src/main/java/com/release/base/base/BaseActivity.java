@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
@@ -309,4 +310,5 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     public <T extends ViewModel> T createViewModel(Application application, Class<T> cls) {
         return ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(cls);
     }
+
 }

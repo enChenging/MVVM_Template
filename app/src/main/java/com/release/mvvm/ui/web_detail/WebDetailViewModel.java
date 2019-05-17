@@ -10,13 +10,7 @@ import androidx.databinding.ObservableField;
 import com.release.base.base.BaseViewModel;
 import com.release.mvvm.bean.RecommendPageBean;
 
-import java.io.Serializable;
-
 import static com.release.mvvm.utils.Constants.RECOMMEND_BUNDLE;
-import static com.release.mvvm.utils.Constants.RECOMMEND_CTIME;
-import static com.release.mvvm.utils.Constants.RECOMMEND_DESC;
-import static com.release.mvvm.utils.Constants.RECOMMEND_HTML;
-import static com.release.mvvm.utils.Constants.RECOMMEND_TITLE;
 
 /**
  * @author Mr.release
@@ -34,25 +28,14 @@ public class WebDetailViewModel extends BaseViewModel {
     }
 
 
-    public String setIntentData(Intent intent){
+    public String setIntentData(Intent intent) {
 
+        Bundle bundle = intent.getExtras();
 
-//        Bundle bundleExtra = intent.getBundleExtra(RECOMMEND_BUNDLE);
-//        RecommendPageBean.NewslistBean bean = (RecommendPageBean.NewslistBean) bundleExtra.getSerializable(RECOMMEND_BUNDLE);
-//        tvTitleContent.set(bean.getTitle());
-//        tvSource.set(bean.getDescription());
-//        tvTime.set(bean.getCtime());
-//        return bean.getUrl();
-
-        String mRecomTitle = intent.getStringExtra(RECOMMEND_TITLE);
-        String mRecomTime = intent.getStringExtra(RECOMMEND_CTIME);
-        String mRecomDesc = intent.getStringExtra(RECOMMEND_DESC);
-        String mRecomHtml = intent.getStringExtra(RECOMMEND_HTML);
-
-        tvTitleContent.set(mRecomTitle);
-        tvSource.set(mRecomDesc);
-        tvTime.set(mRecomTime);
-
-        return mRecomHtml;
+        RecommendPageBean.NewslistBean bean = (RecommendPageBean.NewslistBean) bundle.getSerializable(RECOMMEND_BUNDLE);
+        tvTitleContent.set(bean.getTitle());
+        tvSource.set(bean.getDescription());
+        tvTime.set(bean.getCtime());
+        return bean.getUrl();
     }
 }

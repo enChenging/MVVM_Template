@@ -1,8 +1,5 @@
 package com.release.mvvm.ui.web_detail;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,16 +10,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.core.app.ActivityOptionsCompat;
+
 import com.release.base.base.BaseActivity;
 import com.release.base.utils.LogUtils;
 import com.release.mvvm.BR;
 import com.release.mvvm.R;
 import com.release.mvvm.databinding.ActivityEventDetailBinding;
-
-import static com.release.mvvm.utils.Constants.RECOMMEND_CTIME;
-import static com.release.mvvm.utils.Constants.RECOMMEND_DESC;
-import static com.release.mvvm.utils.Constants.RECOMMEND_HTML;
-import static com.release.mvvm.utils.Constants.RECOMMEND_TITLE;
 
 /**
  * @author Mr.release
@@ -38,18 +32,6 @@ public class WebDetailActivity extends BaseActivity<ActivityEventDetailBinding, 
     private WebSettings mWebSettings;
     boolean isConnected = true;//TODO：模拟网络连接
 
-    public static void start(Context context, String title, String cTime, String desc, String html) {
-
-        Intent intent = new Intent(context, WebDetailActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(RECOMMEND_TITLE, title);
-        intent.putExtra(RECOMMEND_CTIME, cTime);
-        intent.putExtra(RECOMMEND_DESC, desc);
-        intent.putExtra(RECOMMEND_HTML, html);
-        context.startActivity(intent);
-        ((Activity) context).overridePendingTransition(R.anim.slide_right_entry, R.anim.hold);
-    }
-
     @Override
     public int getLayoutId(Bundle savedInstanceState) {
         return R.layout.activity_event_detail;
@@ -61,7 +43,6 @@ public class WebDetailActivity extends BaseActivity<ActivityEventDetailBinding, 
         initWebView();
         initData();
     }
-
 
     @Override
     public void updateViews(boolean isRefresh) {
@@ -85,9 +66,10 @@ public class WebDetailActivity extends BaseActivity<ActivityEventDetailBinding, 
         binding.webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                LogUtils.d(TAG, "shouldOverrideUrlLoading: ");
-                return false;
+                if (url.startsWith("http:") || url.startsWith("https:")) {
+                    view.loadUrl(url);
+                }
+                return super.shouldOverrideUrlLoading(view, url);
             }
 
         });
@@ -133,7 +115,7 @@ public class WebDetailActivity extends BaseActivity<ActivityEventDetailBinding, 
         mWebSettings.setJavaScriptEnabled(true);
         mWebSettings.setPluginState(WebSettings.PluginState.ON);
         mWebSettings.setSupportZoom(false);
-        mWebSettings.setBuiltInZoomControls(false);
+        mWebSettings.setBuiltInZoomControls(true);
         mWebSettings.setDisplayZoomControls(false);
         mWebSettings.setAllowFileAccess(true);
         mWebSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -157,8 +139,10 @@ public class WebDetailActivity extends BaseActivity<ActivityEventDetailBinding, 
         }
         mWebSettings.setDomStorageEnabled(true);
         mWebSettings.setDatabaseEnabled(true);
+        mWebSettings.setGeolocationEnabled(true);
         mWebSettings.setAppCacheEnabled(true);
         String cacheDirPath = getFilesDir().getAbsolutePath() + "cacheWebView";
+        mWebSettings.setGeolocationDatabasePath(cacheDirPath);
         mWebSettings.setAppCachePath(cacheDirPath);
     }
 

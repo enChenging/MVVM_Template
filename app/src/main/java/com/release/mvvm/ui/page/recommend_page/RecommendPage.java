@@ -16,7 +16,6 @@ import com.release.mvvm.R;
 import com.release.mvvm.bean.RecommendPageBean;
 import com.release.mvvm.databinding.PageRecommendBinding;
 import com.release.mvvm.ui.adapter.RecommendAdapter;
-import com.release.mvvm.ui.web_detail.WebDetailActivity;
 
 import java.util.List;
 
@@ -60,8 +59,7 @@ public class RecommendPage extends BaseFragment<PageRecommendBinding, RecommendV
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
                 RecommendPageBean.NewslistBean bean = (RecommendPageBean.NewslistBean) adapter.getData().get(position);
-                WebDetailActivity.start(mContext, bean.getTitle(), bean.getCtime(), bean.getDescription(), bean.getUrl());
-//                viewModel.goToWebDetail(bean);
+                viewModel.goToWebDetail(bean);
             }
         });
 

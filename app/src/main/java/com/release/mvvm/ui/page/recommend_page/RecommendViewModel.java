@@ -55,9 +55,9 @@ public class RecommendViewModel extends BaseViewModel {
 
     }
 
-    public void goToWebDetail(RecommendPageBean.NewslistBean bean){
+    public void goToWebDetail(RecommendPageBean.NewslistBean bean) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constants.RECOMMEND_BUNDLE,bean);
-        startActivity(WebDetailActivity.class,bundle);
+        bundle.putSerializable(Constants.RECOMMEND_BUNDLE, bean);
+        startActivity(WebDetailActivity.class, bundle);
     }
 }

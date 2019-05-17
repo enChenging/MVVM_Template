@@ -3,7 +3,7 @@ package com.release.mvvm.dagger.main_module.news_page;
 import androidx.fragment.app.FragmentManager;
 
 import com.release.base.base.ViewPagerAdapter;
-import com.release.mvvm.dagger.BaseFragmentModule;
+import com.release.base.dagger.module.BaseFragmentModule;
 import com.release.base.dagger.qualifiers.ChildFragmentManager;
 import com.release.base.dagger.scope.ChildFragmentScope;
 import com.release.base.dagger.qualifiers.Fragment;

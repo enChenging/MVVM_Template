@@ -60,7 +60,7 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
             if (isModule.toBoolean()) {
-                manifest.srcFile 'src/main/alone/AndroidManifest.xml'
+                manifest.srcFile 'src/module/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
                 resources {
@@ -70,7 +70,7 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled true
     }
 
@@ -110,9 +110,9 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 
-    if (isModule.toBoolean()){
+    if (isModule.toBoolean()) {
         implementation project(':lib_base')
-    }else {
+    } else {
         implementation project(':module_login')
     }
 

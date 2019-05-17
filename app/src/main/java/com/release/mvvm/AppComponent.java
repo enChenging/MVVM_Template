@@ -15,8 +15,8 @@ import dagger.android.AndroidInjector;
 @Singleton
 @Component(modules = {
         AppModule.class,
-        LoginAppModule.class}
-)
+        LoginAppModule.class
+})
 interface AppComponent extends AndroidInjector<App> {
 
     @Component.Builder
