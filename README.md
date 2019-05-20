@@ -19,7 +19,7 @@ MVVM_Template
 	：一个实现异步操作的库
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 	：用于Android的Rxjava绑定库
-- [RxLifecycle](https://github.com/trello/RxLifecycle)
+- [AutoDispose](https://github.com/uber/AutoDispose)
 	：防止RxJava中subscription导致内存泄漏
 - [rxbinding](https://github.com/JakeWharton/RxBinding)
 	：提供了一套在 Android 平台上的基于 RxJava的 Binding API	
