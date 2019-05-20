@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
         if (Build.VERSION.SDK_INT >= 23)
             viewModel.requestCameraPermissions(this);
         else
-            viewModel.jump();
+            viewModel.jump(this);
     }
 
     @Override

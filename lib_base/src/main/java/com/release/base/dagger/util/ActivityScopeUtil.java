@@ -16,8 +16,9 @@
 
 package com.release.base.dagger.util;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.release.base.dagger.scope.ActivityScope;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import javax.inject.Inject;
 
@@ -33,10 +34,10 @@ import javax.inject.Inject;
 @ActivityScope
 public final class ActivityScopeUtil {
 
-    private final RxAppCompatActivity activity;
+    private final AppCompatActivity activity;
 
     @Inject
-    ActivityScopeUtil(RxAppCompatActivity activity) {
+    ActivityScopeUtil(AppCompatActivity activity) {
         this.activity = activity;
     }
 

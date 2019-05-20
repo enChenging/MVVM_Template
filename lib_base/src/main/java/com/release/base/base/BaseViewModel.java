@@ -8,9 +8,9 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
-import com.trello.rxlifecycle3.LifecycleProvider;
+import com.release.base.utils.baserx.RxUtil;
+import com.uber.autodispose.AutoDisposeConverter;
 
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,20 +20,51 @@ import java.util.Map;
  * @Describe
  */
 public class BaseViewModel extends BaseModel implements IBaseViewModel {
+    private static final String TAG = BaseViewModel.class.getSimpleName();
+
     private UIChangeLiveData uc;
-    private WeakReference<LifecycleProvider> lifecycle;
 
     public BaseViewModel(@NonNull Application application) {
         super(application);
 
     }
 
-    public void injectLifecycleProvider(LifecycleProvider lifecycle) {
-        this.lifecycle = new WeakReference<>(lifecycle);
+    @Override
+    public void onAny(LifecycleOwner owner, Lifecycle.Event event) {
     }
 
-    public LifecycleProvider getLifecycleProvider() {
-        return lifecycle.get();
+    @Override
+    public void onCreate() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
+
+    @Override
+    public void onStart() {
+    }
+
+    @Override
+    public void onStop() {
+    }
+
+    @Override
+    public void onResume() {
+    }
+
+    @Override
+    public void onPause() {
+    }
+
+    @Override
+    public void registerRxBus() {
+    }
+
+    @Override
+    public void removeRxBus() {
     }
 
     public UIChangeLiveData getUC() {
@@ -93,43 +124,6 @@ public class BaseViewModel extends BaseModel implements IBaseViewModel {
             params.put(ParameterField.BUNDLE, bundle);
         }
         uc.startActivityEvent.postValue(params);
-    }
-
-
-    @Override
-    public void onAny(LifecycleOwner owner, Lifecycle.Event event) {
-    }
-
-    @Override
-    public void onCreate() {
-    }
-
-    @Override
-    public void onDestroy() {
-    }
-
-    @Override
-    public void onStart() {
-    }
-
-    @Override
-    public void onStop() {
-    }
-
-    @Override
-    public void onResume() {
-    }
-
-    @Override
-    public void onPause() {
-    }
-
-    @Override
-    public void registerRxBus() {
-    }
-
-    @Override
-    public void removeRxBus() {
     }
 
     public final class UIChangeLiveData extends SingleLiveEvent {

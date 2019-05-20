@@ -4,14 +4,18 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.release.base.base.BaseViewModel;
 import com.release.base.base.SingleLiveEvent;
 import com.release.base.utils.LogUtils;
 import com.release.base.utils.ToastUtils;
 import com.release.base.utils.baserx.CommonSubscriber;
+import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.dao.VideoInfo;
 import com.release.mvvm.http.RetrofitHelper;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.reactivestreams.Subscription;
 
@@ -31,6 +35,7 @@ public class VideoListViewModel extends BaseViewModel {
     public SingleLiveEvent<List<VideoInfo>> finishLoadData = new SingleLiveEvent();
     public SingleLiveEvent<List<VideoInfo>> finishLoadMoreData = new SingleLiveEvent();
     public SingleLiveEvent finishNoData = new SingleLiveEvent();
+    private VideoListFragment videoListFragment;
 
 
     public VideoListViewModel(@NonNull Application application) {
@@ -39,8 +44,8 @@ public class VideoListViewModel extends BaseViewModel {
 
 
     @SuppressLint("CheckResult")
-    public void loadData(boolean isRefresh, String videoId) {
-
+    public void loadData(VideoListFragment videoListFragment, boolean isRefresh, String videoId) {
+        this.videoListFragment = videoListFragment;
         addSubscribe(
                 RetrofitHelper
                         .getVideoListAPI(videoId, mPage)
@@ -52,6 +57,7 @@ public class VideoListViewModel extends BaseViewModel {
                                 }
                             }
                         })
+                        .as(RxUtil.bindLifecycle(videoListFragment))
                         .subscribeWith(new CommonSubscriber<List<VideoInfo>>() {
                             @Override
                             protected void _onNext(List<VideoInfo> videoInfos) {
@@ -88,6 +94,7 @@ public class VideoListViewModel extends BaseViewModel {
         addSubscribe(
                 RetrofitHelper
                         .getVideoListAPI(videoId, mPage)
+                        .as(RxUtil.bindLifecycle(videoListFragment))
                         .subscribeWith(new CommonSubscriber<List<VideoInfo>>() {
                             @Override
                             protected void _onNext(List<VideoInfo> videoInfos) {

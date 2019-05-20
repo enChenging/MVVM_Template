@@ -26,7 +26,6 @@ import com.release.base.dagger.qualifiers.ChildFragmentManager;
 import com.release.base.utils.SwipeRefreshHelper;
 import com.release.base.utils.baserx.Messenger;
 import com.release.base.widget.EmptyLayout;
-import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -44,7 +43,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  * @create 2019/3/22
  * @Describe
  */
-public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends RxFragment implements HasSupportFragmentInjector,
+public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends Fragment implements HasSupportFragmentInjector,
         UIIterfaceFrag, EmptyLayout.OnRetryListener {
 
     protected T binding;
@@ -141,7 +140,6 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         }
         binding.setVariable(viewModelId, viewModel);
         getLifecycle().addObserver(viewModel);
-        viewModel.injectLifecycleProvider(this);
     }
 
 
@@ -233,7 +231,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     /**
      * 跳转容器页面
      *
-     * @param canonicalName 规范名 : Fragment.class.getCanonicalName()
+     * @param canonicalName 规范名 : Fragmentq.class.getCanonicalName()
      */
     public void startContainerActivity(String canonicalName) {
         startContainerActivity(canonicalName, null);
@@ -242,7 +240,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     /**
      * 跳转容器页面
      *
-     * @param canonicalName 规范名 : Fragment.class.getCanonicalName()
+     * @param canonicalName 规范名 : Fragmentq.class.getCanonicalName()
      * @param bundle        跳转所携带的信息
      */
     public void startContainerActivity(String canonicalName, Bundle bundle) {

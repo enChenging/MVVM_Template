@@ -115,7 +115,7 @@ public class NewsListFragment extends BaseFragment<FragmentNewsListBinding, News
 
     @Override
     public void updateViews(boolean isRefresh) {
-        viewModel.loadData(isRefresh, mNewsId);
+        viewModel.loadData(this,isRefresh, mNewsId);
     }
 
 }

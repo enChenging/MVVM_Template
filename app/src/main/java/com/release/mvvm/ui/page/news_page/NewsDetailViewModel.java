@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.alibaba.fastjson.JSON;
 import com.release.base.base.BaseViewModel;
@@ -16,6 +17,8 @@ import com.release.base.utils.baserx.CommonSubscriber;
 import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.bean.NewsDetailInfoBean;
 import com.release.mvvm.http.RetrofitHelper;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.reactivestreams.Subscription;
 
@@ -54,7 +57,7 @@ public class NewsDetailViewModel extends BaseViewModel {
 
 
     @SuppressLint("CheckResult")
-    public void loadData(String newsId) {
+    public void loadData(NewsDetailActivity newsDetailActivity, String newsId) {
 
         LogUtils.i(TAG, "loadData: " + newsId);
         RetrofitHelper
@@ -73,7 +76,7 @@ public class NewsDetailViewModel extends BaseViewModel {
                         _handleRichTextWithImg(newsDetailInfoBean);
                     }
                 })
-                .compose(RxUtil.bindToLifecycle(getLifecycleProvider()))
+                .as(RxUtil.bindLifecycle(newsDetailActivity))
                 .subscribeWith(new CommonSubscriber<NewsDetailInfoBean>() {
                     @Override
                     protected void _onNext(NewsDetailInfoBean newsDetailInfoBean) {

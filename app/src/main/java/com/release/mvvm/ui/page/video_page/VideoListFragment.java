@@ -120,7 +120,7 @@ public class VideoListFragment extends BaseFragment<FragmentVideoListBinding, Vi
 
     @Override
     public void updateViews(boolean isRefresh) {
-        viewModel.loadData(isRefresh, mVideoId);
+        viewModel.loadData(this,isRefresh, mVideoId);
     }
 
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.release.base.base.BaseViewModel;
 import com.release.base.base.SingleLiveEvent;
@@ -12,6 +13,8 @@ import com.release.base.utils.baserx.CommonSubscriber;
 import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.bean.PhotoSetInfoBean;
 import com.release.mvvm.http.RetrofitHelper;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.reactivestreams.Subscription;
 
@@ -32,7 +35,7 @@ public class PhotoAlbumViewModel extends BaseViewModel {
     }
 
     @SuppressLint("CheckResult")
-    public void loadData(String photoSetId) {
+    public void loadData(PhotoAlbumActivity photoAlbumActivity, String photoSetId) {
         LogUtils.i(TAG, "loadData---mPhotoSetId: " + photoSetId);
         RetrofitHelper
                 .getPhotoAlbumAPI(photoSetId)
@@ -42,7 +45,7 @@ public class PhotoAlbumViewModel extends BaseViewModel {
                         showLoading();
                     }
                 })
-                .compose(RxUtil.bindToLifecycle(getLifecycleProvider()))
+                .as(RxUtil.bindLifecycle(photoAlbumActivity))
                 .subscribeWith(new CommonSubscriber<PhotoSetInfoBean>() {
                     @Override
                     protected void _onNext(PhotoSetInfoBean photoSetInfoBean) {

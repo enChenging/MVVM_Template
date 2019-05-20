@@ -1,11 +1,12 @@
 package com.release.mvvm.dagger.news_special_module;
 
-import com.release.base.dagger.scope.ActivityScope;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.release.base.dagger.module.BaseActivityModule;
+import com.release.base.dagger.scope.ActivityScope;
 import com.release.mvvm.R;
 import com.release.mvvm.ui.adapter.NewsSpecialAdapter;
 import com.release.mvvm.ui.page.news_page.NewsSpecialActivity;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import dagger.Binds;
 import dagger.Module;
@@ -22,7 +23,7 @@ public abstract class NewsSpecialActivityModule {
 
     @Binds
     @ActivityScope
-    abstract RxAppCompatActivity activity(NewsSpecialActivity activity);
+    abstract AppCompatActivity activity(NewsSpecialActivity activity);
 
     @Provides
     @ActivityScope

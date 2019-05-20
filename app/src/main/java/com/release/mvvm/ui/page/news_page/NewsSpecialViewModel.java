@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.alibaba.fastjson.JSON;
 import com.release.base.base.BaseViewModel;
@@ -17,6 +18,8 @@ import com.release.mvvm.bean.NewsItemInfoBean;
 import com.release.mvvm.bean.SpecialInfoBean;
 import com.release.mvvm.http.RetrofitHelper;
 import com.release.mvvm.ui.adapter.item.SpecialItem;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.reactivestreams.Publisher;
 
@@ -53,7 +56,7 @@ public class NewsSpecialViewModel extends BaseViewModel {
 
 
     @SuppressLint("CheckResult")
-    public void loadData(String specialId) {
+    public void loadData(NewsSpecialActivity newsSpecialActivity, String specialId) {
         RetrofitHelper
                 .getNewsSpecialAPI(specialId)
                 .doOnSubscribe(subscription -> hideLoading())
@@ -68,7 +71,7 @@ public class NewsSpecialViewModel extends BaseViewModel {
                 })
                 .toList()
                 .toFlowable()
-                .compose(RxUtil.bindToLifecycle(getLifecycleProvider()))
+                .as(RxUtil.bindLifecycle(newsSpecialActivity))
                 .subscribeWith(new CommonSubscriber<List<SpecialItem>>() {
                     @Override
                     protected void _onNext(List<SpecialItem> specialItems) {

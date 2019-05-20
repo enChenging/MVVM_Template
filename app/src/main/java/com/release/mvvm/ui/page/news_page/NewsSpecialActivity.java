@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,8 @@ import com.release.mvvm.bean.SpecialInfoBean;
 import com.release.mvvm.databinding.ActivitySpecialBinding;
 import com.release.mvvm.ui.adapter.NewsSpecialAdapter;
 import com.release.mvvm.ui.adapter.item.SpecialItem;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import java.util.List;
 
@@ -155,7 +158,7 @@ public class NewsSpecialActivity extends BaseActivity<ActivitySpecialBinding, Ne
 
     @Override
     public void updateViews(boolean isRefresh) {
-        viewModel.loadData(mSpecialId);
+        viewModel.loadData(this,mSpecialId);
     }
 
 
@@ -185,9 +188,6 @@ public class NewsSpecialActivity extends BaseActivity<ActivitySpecialBinding, Ne
     @SuppressLint("CheckResult")
     private void _handleTagLayout(List<SpecialItem> specialItems) {
         Observable.fromIterable(specialItems)
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .filter(new Predicate<SpecialItem>() {
                     int i = 0;
                     int index = mAdapter.getHeaderViewsCount();  // 存在一个 HeadView 所以从1算起
@@ -209,6 +209,9 @@ public class NewsSpecialActivity extends BaseActivity<ActivitySpecialBinding, Ne
                         return _clipHeadStr(specialItem.header);
                     }
                 })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .as(bindLifecycle())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

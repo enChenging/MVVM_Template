@@ -5,14 +5,18 @@ import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.release.base.base.BaseViewModel;
 import com.release.base.base.SingleLiveEvent;
 import com.release.base.utils.baserx.CommonSubscriber;
+import com.release.base.utils.baserx.RxUtil;
 import com.release.mvvm.bean.RecommendPageBean;
 import com.release.mvvm.http.RetrofitHelper;
 import com.release.mvvm.ui.web_detail.WebDetailActivity;
 import com.release.mvvm.utils.Constants;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import java.util.List;
 
@@ -31,11 +35,12 @@ public class RecommendViewModel extends BaseViewModel {
     }
 
     @SuppressLint("CheckResult")
-    public void loadData() {
+    public void loadData(RecommendPage recommendPage) {
         addSubscribe(
                 RetrofitHelper
                         .getRecommendData("4a0090627cf07a50def18da875165740", 20)
                         .doOnSubscribe(subscription -> showLoading())
+                        .as(RxUtil.bindLifecycle(recommendPage))
                         .subscribeWith(new CommonSubscriber<RecommendPageBean>() {
                             @Override
                             protected void _onNext(RecommendPageBean recommendPageBean) {

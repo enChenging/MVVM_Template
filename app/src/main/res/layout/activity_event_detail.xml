@@ -70,7 +70,10 @@
         </LinearLayout>
 
 
-        <include layout="@layout/layout_common_empty" />
+        <com.release.base.widget.EmptyLayout
+            android:id="@+id/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 

@@ -1,7 +1,9 @@
 package com.release.mvvm.dagger.main_module;
 
-import com.release.base.dagger.scope.ActivityScope;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.release.base.dagger.module.BaseActivityModule;
+import com.release.base.dagger.scope.ActivityScope;
 import com.release.base.dagger.scope.FragmentScope;
 import com.release.mvvm.dagger.main_module.kinds_page.KindsPageModule;
 import com.release.mvvm.dagger.main_module.news_page.NewsPageModule;
@@ -12,7 +14,6 @@ import com.release.mvvm.ui.page.kinds_page.KindsPage;
 import com.release.mvvm.ui.page.news_page.NewsPage;
 import com.release.mvvm.ui.page.recommend_page.RecommendPage;
 import com.release.mvvm.ui.page.video_page.VideoPage;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import dagger.Binds;
 import dagger.Module;
@@ -28,7 +29,7 @@ public abstract class MainActivityModule {
 
     @Binds
     @ActivityScope
-    abstract RxAppCompatActivity activity(MainActivity activity);
+    abstract AppCompatActivity activity(MainActivity activity);
 
     @FragmentScope
     @ContributesAndroidInjector(modules = NewsPageModule.class)

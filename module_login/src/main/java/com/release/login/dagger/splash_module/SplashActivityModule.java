@@ -1,9 +1,10 @@
 package com.release.login.dagger.splash_module;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.release.base.dagger.scope.ActivityScope;
 import com.release.base.dagger.module.BaseActivityModule;
 import com.release.login.ui.splash.SplashActivity;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import dagger.Binds;
 import dagger.Module;
@@ -19,5 +20,5 @@ public abstract class SplashActivityModule {
 
     @Binds
     @ActivityScope
-    abstract RxAppCompatActivity activity(SplashActivity activity);
+    abstract AppCompatActivity activity(SplashActivity activity);
 }

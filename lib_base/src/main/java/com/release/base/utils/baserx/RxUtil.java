@@ -1,14 +1,14 @@
 package com.release.base.utils.baserx;
 
-import android.content.Context;
 import android.text.TextUtils;
 
-import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.release.base.utils.ToastUtils;
 import com.release.base.utils.response.BaseResponse;
-import com.trello.rxlifecycle3.LifecycleProvider;
-import com.trello.rxlifecycle3.LifecycleTransformer;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.AutoDisposeConverter;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.reactivestreams.Publisher;
 
@@ -20,7 +20,6 @@ import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -31,39 +30,14 @@ import io.reactivex.schedulers.Schedulers;
 public class RxUtil {
 
 
-    /**
-     * 生命周期绑定
-     *
-     * @param lifecycle Activity
-     */
-    public static <T> LifecycleTransformer<T> bindToLifecycle(@NonNull Context lifecycle) {
-        if (lifecycle instanceof LifecycleProvider) {
-            return ((LifecycleProvider) lifecycle).bindToLifecycle();
-        } else {
-            throw new IllegalArgumentException("context not the LifecycleProvider type");
-        }
+    private RxUtil() {
+        throw new IllegalStateException("Can't instance the RxUtil");
     }
 
-    /**
-     * 生命周期绑定
-     *
-     * @param lifecycle Fragment
-     */
-    public static LifecycleTransformer bindToLifecycle(@NonNull Fragment lifecycle) {
-        if (lifecycle instanceof LifecycleProvider) {
-            return ((LifecycleProvider) lifecycle).bindToLifecycle();
-        } else {
-            throw new IllegalArgumentException("fragment not the LifecycleProvider type");
-        }
-    }
-
-    /**
-     * 生命周期绑定
-     *
-     * @param lifecycle Fragment
-     */
-    public static LifecycleTransformer bindToLifecycle(@NonNull LifecycleProvider lifecycle) {
-        return lifecycle.bindToLifecycle();
+    public static <T> AutoDisposeConverter<T> bindLifecycle(LifecycleOwner lifecycleOwner) {
+        return AutoDispose.autoDisposable(
+                AndroidLifecycleScopeProvider.from(lifecycleOwner)
+        );
     }
 
     /**

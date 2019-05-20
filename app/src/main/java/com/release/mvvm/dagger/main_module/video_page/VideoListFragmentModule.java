@@ -1,12 +1,13 @@
 package com.release.mvvm.dagger.main_module.video_page;
 
+import androidx.fragment.app.Fragment;
+
 import com.release.base.dagger.module.BaseChildFragmentModule;
 import com.release.base.dagger.qualifiers.ChildFragment;
 import com.release.base.dagger.scope.ChildFragmentScope;
 import com.release.mvvm.R;
 import com.release.mvvm.ui.adapter.VideoListAdapter;
 import com.release.mvvm.ui.page.video_page.VideoListFragment;
-import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import dagger.Binds;
 import dagger.Module;
@@ -23,7 +24,7 @@ abstract class VideoListFragmentModule {
     @Binds
     @ChildFragment
     @ChildFragmentScope
-    abstract RxFragment fragment(VideoListFragment videoListFragment);
+    abstract Fragment fragment(VideoListFragment videoListFragment);
 
     @Provides
     @ChildFragmentScope

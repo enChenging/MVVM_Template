@@ -6,7 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityOptionsCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
@@ -19,8 +19,9 @@ import com.release.base.R;
 import com.release.base.utils.StatusBarUtil;
 import com.release.base.utils.SwipeRefreshHelper;
 import com.release.base.utils.baserx.Messenger;
+import com.release.base.utils.baserx.RxUtil;
 import com.release.base.widget.EmptyLayout;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+import com.uber.autodispose.AutoDisposeConverter;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -38,7 +39,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  * @create 2019/3/22
  * @Describe
  */
-public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends RxAppCompatActivity
+public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity
         implements HasSupportFragmentInjector, UIIterfaceAct, EmptyLayout.OnRetryListener {
 
     protected static String TAG;
@@ -68,6 +69,8 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
         initViewDataBinding(savedInstanceState);
 
+        viewModel.registerRxBus();
+
         registorUIChangeLiveDataCallBack();
 
         initView();
@@ -78,11 +81,14 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
         updateViews(false);
 
-        viewModel.registerRxBus();
-
         mEmptyLayout = findViewById(R.id.empty_layout);
         mSwipeRefresh = findViewById(R.id.swipe_refresh);
         setStatusBar();
+
+    }
+
+    public <T> AutoDisposeConverter<T> bindLifecycle() {
+        return RxUtil.bindLifecycle(this);
     }
 
     protected void setStatusBar() {
@@ -110,8 +116,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         binding.setVariable(viewModelId, viewModel);//关联viewModel
 
         getLifecycle().addObserver(viewModel);//LifecycleObserver（让viewModel拥有acitivity的生命周期）
-
-        viewModel.injectLifecycleProvider(this);//注入RxLifecycle生命周期
     }
 
     //刷新布局
@@ -209,7 +213,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     /**
      * 跳转容器页面
      *
-     * @param canonicalName 规范名 : Fragment.class.getCanonicalName()
+     * @param canonicalName 规范名 : Fragmentq.class.getCanonicalName()
      */
     public void startContainerActivity(String canonicalName) {
         startContainerActivity(canonicalName, null);
@@ -218,7 +222,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     /**
      * 跳转容器页面
      *
-     * @param canonicalName 规范名 : Fragment.class.getCanonicalName()
+     * @param canonicalName 规范名 : Fragmentq.class.getCanonicalName()
      * @param bundle        跳转所携带的信息
      */
     public void startContainerActivity(String canonicalName, Bundle bundle) {

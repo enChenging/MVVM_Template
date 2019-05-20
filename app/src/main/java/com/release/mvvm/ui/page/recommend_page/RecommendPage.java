@@ -74,6 +74,6 @@ public class RecommendPage extends BaseFragment<PageRecommendBinding, RecommendV
 
     @Override
     public void updateViews(boolean isRefresh) {
-        viewModel.loadData();
+        viewModel.loadData(this);
     }
 }

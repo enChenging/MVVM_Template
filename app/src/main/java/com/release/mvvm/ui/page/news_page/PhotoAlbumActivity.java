@@ -79,7 +79,7 @@ public class PhotoAlbumActivity extends BaseActivity<ActivityPhotoAlbumBinding, 
 
     @Override
     public void updateViews(boolean isRefresh) {
-        viewModel.loadData(mPhotoSetId);
+        viewModel.loadData(this,mPhotoSetId);
     }
 
     public void loadPhotoDataView(PhotoSetInfoBean photoSetBean) {

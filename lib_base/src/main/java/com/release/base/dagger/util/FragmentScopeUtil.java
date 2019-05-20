@@ -16,16 +16,15 @@
 
 package com.release.base.dagger.util;
 
-import com.release.base.dagger.qualifiers.Fragment;
+import com.release.base.dagger.qualifiers.Fragmentq;
 import com.release.base.dagger.scope.FragmentScope;
-import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import javax.inject.Inject;
 
 /**
  * A class that does something.
  * <p>
- * This class has the {@link FragmentScope} scope. This means that the Fragment and all of its child
+ * This class has the {@link FragmentScope} scope. This means that the Fragmentq and all of its child
  * fragments and their dependencies will share the same instance of this class. However, different
  * fragment instances will have their own instances.
  * <p>
@@ -34,10 +33,10 @@ import javax.inject.Inject;
 @FragmentScope
 public final class FragmentScopeUtil {
 
-    private final RxFragment fragment;
+    private final androidx.fragment.app.Fragment fragment;
 
     @Inject
-    FragmentScopeUtil(@Fragment RxFragment fragment) {
+    FragmentScopeUtil(@Fragmentq androidx.fragment.app.Fragment fragment) {
         this.fragment = fragment;
     }
 
@@ -46,6 +45,6 @@ public final class FragmentScopeUtil {
      * {@link #hashCode()} and the fragment's {@link #hashCode()}.
      */
     public String doSomething() {
-        return "FragmentScopeUtil: " + hashCode() + ", Fragment: " + fragment.hashCode();
+        return "FragmentScopeUtil: " + hashCode() + ", Fragmentq: " + fragment.hashCode();
     }
 }

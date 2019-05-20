@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.release.base.base.BaseViewModel;
 import com.release.base.base.SingleLiveEvent;
 import com.release.base.utils.LogUtils;
@@ -15,6 +17,8 @@ import com.release.mvvm.bean.NewsInfoBean;
 import com.release.mvvm.http.RetrofitHelper;
 import com.release.mvvm.ui.adapter.item.NewsMultiItem;
 import com.release.mvvm.utils.NewsUtils;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
@@ -39,6 +43,7 @@ public class NewsListViewModel extends BaseViewModel {
     public SingleLiveEvent<List<NewsMultiItem>> finishLoadData = new SingleLiveEvent();
     public SingleLiveEvent<List<NewsMultiItem>> finishLoadMoreData = new SingleLiveEvent();
     public SingleLiveEvent finishNoData = new SingleLiveEvent();
+    private NewsListFragment newsListFragment;
 
 
     public NewsListViewModel(@NonNull Application application) {
@@ -47,8 +52,9 @@ public class NewsListViewModel extends BaseViewModel {
 
 
     @SuppressLint("CheckResult")
-    public void loadData(boolean isRefresh, String newsId) {
+    public void loadData(NewsListFragment newsListFragment, boolean isRefresh, String newsId) {
 
+        this.newsListFragment = newsListFragment;
         LogUtils.i(TAG, "loadData---mNewsId: " + newsId);
 
         RetrofitHelper
@@ -70,6 +76,7 @@ public class NewsListViewModel extends BaseViewModel {
                     }
                 })
                 .compose(observableTransformer)
+                .as(RxUtil.bindLifecycle(newsListFragment))
                 .subscribeWith(new CommonSubscriber<List<NewsMultiItem>>() {
                     @Override
                     protected void _onNext(List<NewsMultiItem> newsMultiItems) {
@@ -108,6 +115,7 @@ public class NewsListViewModel extends BaseViewModel {
         RetrofitHelper
                 .getImportantNewAPI("T1348647909107", mPage)
                 .compose(observableTransformer)
+                .as(RxUtil.bindLifecycle(newsListFragment))
                 .subscribeWith(new CommonSubscriber<List<NewsMultiItem>>() {
                     @Override
                     protected void _onNext(List<NewsMultiItem> newsMultiItems) {
@@ -147,8 +155,7 @@ public class NewsListViewModel extends BaseViewModel {
                         }
                     })
                     .toList()
-                    .toFlowable()
-                    .compose(RxUtil.bindToLifecycle(getLifecycleProvider()));
+                    .toFlowable();
         }
     };
 }

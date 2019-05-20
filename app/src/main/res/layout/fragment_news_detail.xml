@@ -53,7 +53,10 @@
             </LinearLayout>
         </com.release.base.widget.PullScrollView>
 
-        <include layout="@layout/layout_common_empty" />
+        <com.release.base.widget.EmptyLayout
+            android:id="@+id/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:id="@+id/ll_top_bar2"

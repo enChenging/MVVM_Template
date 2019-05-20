@@ -73,7 +73,8 @@ public class SplashViewModel extends BaseViewModel {
         exit(getApplication());
     }
 
-    public void jump() {
+    public void jump(SplashActivity splashActivity) {
+        this.mActivity = splashActivity;
         Boolean loginFirst = (Boolean) SPUtil.getParam(LoginConstants.LOGIN_FIRST, true);
         btnPermissionVisibility.set(View.GONE);
         if (loginFirst) {
@@ -88,10 +89,10 @@ public class SplashViewModel extends BaseViewModel {
     @SuppressLint("CheckResult")
     public void countdown(int time) {
         RxHelper.countdown(time)
-                .compose(RxUtil.bindToLifecycle(getLifecycleProvider()))
+                .doOnSubscribe(subscription -> btnJump.set("跳过(6)"))
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.exceptionTransformer())
-                .doOnSubscribe(subscription -> btnJump.set("跳过(6)"))
+                .as(RxUtil.bindLifecycle(mActivity))
                 .subscribeWith(new CommonSubscriber<Long>() {
                     @Override
                     protected void _onNext(Long aLong) {
@@ -142,7 +143,7 @@ public class SplashViewModel extends BaseViewModel {
                 .subscribe(permission -> {
                     if (permission.granted) {
                         hasPermission = true;
-                        jump();
+                        jump(activity);
                     } else if (permission.shouldShowRequestPermissionRationale) {
                         showNotice(activity, activity.getResources().getString(R.string.rationale_wr), isNever);
                     } else {

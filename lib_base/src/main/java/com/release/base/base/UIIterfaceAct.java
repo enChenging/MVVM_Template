@@ -18,6 +18,4 @@ interface UIIterfaceAct {
     void initListener();
 
     void updateViews(boolean isRefresh);
-
-
 }

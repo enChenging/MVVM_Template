@@ -6,6 +6,8 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 
+import org.greenrobot.greendao.annotation.NotNull;
+
 /**
  * Created by goldze on 2017/6/15.
  */
@@ -13,7 +15,8 @@ import androidx.lifecycle.OnLifecycleEvent;
 public interface IBaseViewModel extends LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-    void onAny(LifecycleOwner owner, Lifecycle.Event event);
+    void onAny(LifecycleOwner owner,
+               Lifecycle.Event event);
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     void onCreate();

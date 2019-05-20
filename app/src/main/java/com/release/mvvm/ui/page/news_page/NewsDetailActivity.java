@@ -154,7 +154,7 @@ public class NewsDetailActivity extends BaseActivity<FragmentNewsDetailBinding,N
 
     @Override
     public void updateViews(boolean isRefresh) {
-        viewModel.loadData(mNewsId);
+        viewModel.loadData(this,mNewsId);
     }
 
     /**
